@@ -11,5 +11,7 @@
 -(id)initWithBars:(NSArray *)bars;
 -(void)setUpCont;
 -(void)resetBarsAnimate:(BOOL)animate;
+-(void)activateBarsWithDifficulty:(float)difficulty;
+-(void)animateNextBar;
 
 @end

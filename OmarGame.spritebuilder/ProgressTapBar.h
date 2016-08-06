@@ -10,6 +10,9 @@
 
 @interface ProgressTapBar : CCNodeColor
 
+@property BOOL isAnimating;
+
 -(void)reset;
 
+-(void)startAnimatingWithDuration:(float)duration timer:(BOOL)timer;
 @end
