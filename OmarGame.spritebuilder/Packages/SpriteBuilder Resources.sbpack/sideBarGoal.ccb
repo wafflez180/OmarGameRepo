@@ -161,8 +161,6 @@
 								<array/>
 							</dict>
 						</array>
-						<key>selected</key>
-						<true/>
 					</dict>
 				</array>
 				<key>customClass</key>
@@ -181,7 +179,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>yellow</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -280,7 +278,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>red</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -355,6 +353,8 @@
 						<real>1</real>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>UUID</key>
@@ -379,7 +379,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>blue</string>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -587,7 +587,7 @@
 						<key>type</key>
 						<string>StringSimple</string>
 						<key>value</key>
-						<string></string>
+						<string>green</string>
 					</dict>
 					<dict>
 						<key>name</key>

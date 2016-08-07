@@ -11,8 +11,9 @@
 @interface ProgressTapBar : CCNodeColor
 
 @property BOOL isAnimating;
+@property (strong, nonatomic) NSTimer *animationTimer;
 
 -(void)reset;
-
 -(void)startAnimatingWithDuration:(float)duration timer:(BOOL)timer;
+
 @end

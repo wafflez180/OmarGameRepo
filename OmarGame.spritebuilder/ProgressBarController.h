@@ -12,6 +12,9 @@
 -(void)setUpCont;
 -(void)resetBarsAnimate:(BOOL)animate;
 -(void)activateBarsWithDifficulty:(float)difficulty;
--(void)animateNextBar;
+-(void)animateNextBarAtStage:(int)stage;
+-(CGPoint)getBarLoc;
+- (void)activateColor:(NSString *)color
+        withCompBlock:(void (^)(BOOL time))completionBlock;
 
 @end

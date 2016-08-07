@@ -46,7 +46,23 @@
     if(animate){
         [UIView commitAnimations];
     }
+}
 
+- (void)activateColor:(NSString *)color{
+    for(CCNodeColor *goal in goalArray){
+        if([goal.name isEqualToString:color]){
+            goal.opacity = 1;
+        }
+    }
+}
+
+-(BOOL)touchedInGoal:(CGPoint)touch color:(NSString *)color{
+    for(CCNodeColor *goal in goalArray){
+        if(CGRectContainsPoint(goal.boundingBox, touch) && [goal.name isEqualToString:color]){
+            return true;
+        }
+    }
+    return false;
 }
 
 @end

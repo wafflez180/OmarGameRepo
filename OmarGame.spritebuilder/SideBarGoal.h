@@ -11,5 +11,7 @@
 @interface SideBarGoal : CCNode
 
 -(void)resetAnimate:(BOOL)animate;
+-(BOOL)touchedInGoal:(CGPoint)touch color:(NSString *)color;
+- (void)activateColor:(NSString *)color;
 
 @end

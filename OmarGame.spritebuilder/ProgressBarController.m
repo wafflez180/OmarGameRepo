@@ -34,43 +34,48 @@
 }
 
 -(void)resetBarsAnimate:(BOOL)animate{
-    if(animate){
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.2];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-    }
     for(ProgressTapBar *prgBar in prgBars){
         [prgBar reset];
     }
-    if(animate){
-        [UIView commitAnimations];
-    }
-    animatingBarStage = 0;
+    animatingBarStage = 1;
 }
 
 -(void)activateBarsWithDifficulty:(float)difficulty{
-    if(!animating){
-        [self resetBarsAnimate:true];
-        animating = true;
-        animationDuration = 1.0;
-        animatingBarStage = 1;
+    [self resetBarsAnimate:false];
+    animating = true;
+    animationDuration = 1.0;
+    if(!bottomBar.isAnimating){
         [bottomBar startAnimatingWithDuration:animationDuration timer:true];
     }
 }
 
--(void)animateNextBar{
-    animatingBarStage++;
-    NSLog(@"Bar Stage: %d", animatingBarStage);
-    if(animatingBarStage == 2){
-        [leftBar startAnimatingWithDuration:animationDuration timer:false];
-        [rightBar startAnimatingWithDuration:animationDuration timer:true];
-    }else if(animatingBarStage == 3){
-        [topLeftBar startAnimatingWithDuration:animationDuration timer:false];
-        [topRightBar startAnimatingWithDuration:animationDuration timer:true];
-    }else{
-        animating = false;
+-(void)animateNextBarAtStage:(int)stage{
+    if(animating){
+        animatingBarStage = stage;
+        NSLog(@"Bar Stage: %d", animatingBarStage);
+        if(stage == 2){
+            bottomBar.isAnimating = false;
+            [leftBar startAnimatingWithDuration:animationDuration timer:false];
+            [rightBar startAnimatingWithDuration:animationDuration timer:true];
+        }else if(stage == 3){
+            [topLeftBar startAnimatingWithDuration:animationDuration timer:false];
+            [topRightBar startAnimatingWithDuration:animationDuration timer:true];
+        }else{
+            animating = false;
+        }
     }
 }
+
+-(CGPoint)getBarLoc{
+    if(animatingBarStage == 1){
+        return CGPointMake([UIScreen mainScreen].bounds.size.width/2 * bottomBar.scaleX, bottomBar.contentSize.height/2);
+    }else if(animatingBarStage == 2){
+        return CGPointMake(leftBar.contentSize.width/2, leftBar.positionInPoints.y);
+    }else if(animatingBarStage == 3){
+        return CGPointMake(topLeftBar.positionInPoints.x, topLeftBar.positionInPoints.y - (topLeftBar.contentSize.height/2));
+    }
+    return CGPointMake(-100, -100);
+}
+
 
 @end
