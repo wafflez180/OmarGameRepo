@@ -28,22 +28,24 @@
     rightBar = [prgBars objectAtIndex:2];
     topLeftBar = [prgBars objectAtIndex:3];
     topRightBar = [prgBars objectAtIndex:4];
-    [self resetBarsAnimate:false];
+    [self resetBarsAnimate:false color:@"yellow"];
     
     return self;
 }
 
--(void)resetBarsAnimate:(BOOL)animate{
+-(void)resetBarsAnimate:(BOOL)animate color:(NSString *)color{
     for(ProgressTapBar *prgBar in prgBars){
         [prgBar reset];
+        [prgBar setBarColor:color];
     }
+    //NSLog(@"COLOR: %@",color);
     animatingBarStage = 1;
 }
 
--(void)activateBarsWithDifficulty:(float)difficulty{
-    [self resetBarsAnimate:false];
+-(void)activateBarsWithDifficulty:(float)difficulty withColor: (NSString*)color{
+    [self resetBarsAnimate:false color:color];
     animating = true;
-    animationDuration = 1.0;
+    animationDuration = 3.0;
     if(!bottomBar.isAnimating){
         [bottomBar startAnimatingWithDuration:animationDuration timer:true];
     }
@@ -68,9 +70,11 @@
 
 -(CGPoint)getBarLoc{
     if(animatingBarStage == 1){
-        return CGPointMake([UIScreen mainScreen].bounds.size.width/2 * bottomBar.scaleX, bottomBar.contentSize.height/2);
+        NSLog(@"X: %f \nY: %f", [UIScreen mainScreen].bounds.size.width/2-([UIScreen mainScreen].bounds.size.width/2 * bottomBar.scaleX), bottomBar.contentSize.height/2);
+        return CGPointMake([UIScreen mainScreen].bounds.size.width/2-([UIScreen mainScreen].bounds.size.width/2 * bottomBar.scaleX), bottomBar.contentSize.height/2);
     }else if(animatingBarStage == 2){
-        return CGPointMake(leftBar.contentSize.width/2, leftBar.positionInPoints.y);
+        NSLog(@"X: %f \nY: %f", leftBar.contentSize.width/2, leftBar.positionInPoints.y);
+        return CGPointMake(5, leftBar.positionInPoints.y);
     }else if(animatingBarStage == 3){
         return CGPointMake(topLeftBar.positionInPoints.x, topLeftBar.positionInPoints.y - (topLeftBar.contentSize.height/2));
     }

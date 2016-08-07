@@ -15,5 +15,5 @@
 
 -(void)reset;
 -(void)startAnimatingWithDuration:(float)duration timer:(BOOL)timer;
-
+-(void)setBarColor:(NSString *)color;
 @end

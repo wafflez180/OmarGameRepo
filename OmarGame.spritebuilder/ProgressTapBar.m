@@ -10,6 +10,12 @@
 #import "ProgressBarController.h"
 #import "MainScene.h"
 
+#define UIColorFromRGB(rgbValue) \
+[UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
+blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
+alpha:1.0]
+
 @implementation ProgressTapBar{
     BOOL isHorizontalBar;
     BOOL isVerticalBar;
@@ -38,6 +44,30 @@
     self.opacity = 0;
     for(CCSprite *roundedEdge in self.children){
         roundedEdge.opacity = 0;
+    }
+}
+
+-(void)setBarColor:(NSString *)color{
+    if([color isEqualToString:@"green"]){
+        [self setColor:[CCColor colorWithUIColor:UIColorFromRGB(0x44DB5E)]];
+        for (CCSprite *child in self.children) {
+            [child setColor:[CCColor colorWithUIColor:UIColorFromRGB(0x44DB5E)]];
+        }
+    }else if([color isEqualToString:@"blue"]){
+        [self setColor:[CCColor colorWithUIColor:UIColorFromRGB(0x54C7FC)]];
+        for (CCSprite *child in self.children) {
+            [child setColor:[CCColor colorWithUIColor:UIColorFromRGB(0x54C7FC)]];
+        }
+    }else if([color isEqualToString:@"red"]){
+        [self setColor:[CCColor colorWithUIColor:UIColorFromRGB(0xFF2851)]];
+        for (CCSprite *child in self.children) {
+            [child setColor:[CCColor colorWithUIColor:UIColorFromRGB(0xFF2851)]];
+        }
+    }else if([color isEqualToString:@"yellow"]){
+        [self setColor:[CCColor colorWithUIColor:UIColorFromRGB(0xFFCD00)]];
+        for (CCSprite *child in self.children) {
+            [child setColor:[CCColor colorWithUIColor:UIColorFromRGB(0xFFCD00)]];
+        }
     }
 }
 

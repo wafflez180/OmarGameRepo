@@ -10,8 +10,7 @@
 
 -(id)initWithBars:(NSArray *)bars;
 -(void)setUpCont;
--(void)resetBarsAnimate:(BOOL)animate;
--(void)activateBarsWithDifficulty:(float)difficulty;
+-(void)activateBarsWithDifficulty:(float)difficulty withColor: (NSString*)color;
 -(void)animateNextBarAtStage:(int)stage;
 -(CGPoint)getBarLoc;
 - (void)activateColor:(NSString *)color

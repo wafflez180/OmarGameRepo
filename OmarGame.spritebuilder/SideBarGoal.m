@@ -25,13 +25,6 @@
 }
 
 -(void)resetAnimate:(BOOL)animate{
-    if(animate){
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.2];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-    }
-    
     [self setPosition:CGPointMake(self.position.x, self.contentSize.height/2)];
     for(CCNodeColor *goal in goalArray){
         goal.opacity = 0.5;
@@ -42,10 +35,6 @@
             }
         }
     }
-    
-    if(animate){
-        [UIView commitAnimations];
-    }
 }
 
 - (void)activateColor:(NSString *)color{
@@ -54,6 +43,30 @@
             goal.opacity = 1;
         }
     }
+}
+
+-(NSMutableArray*)getDeActivatedGoals{
+    NSMutableArray *goalsLeftToActivate = [[NSMutableArray alloc] init];
+    for(CCNodeColor *goal in goalArray){
+        if(goal.opacity < 1.0){
+            [goalsLeftToActivate addObject:goal];
+        }
+    }
+    return goalsLeftToActivate;
+}
+
+-(NSString *)selectRandomColor{
+    NSMutableArray *goalsLeftToActivate = [self getDeActivatedGoals];
+    if(goalsLeftToActivate.count > 1){
+        int randIndex = rand() % ((goalsLeftToActivate.count) - 0) + 0; //create the random number.
+        CCNodeColor *goal = goalsLeftToActivate[randIndex];
+//        NSLog(@"Random Color: %@, COUNT: %lu",goal.name,(unsigned long)goalsLeftToActivate.count);
+        return goal.name;
+    }else if(goalsLeftToActivate.count == 1){
+        CCNodeColor *goal = goalsLeftToActivate[0];
+        return goal.name;
+    }
+    return @"yellow";
 }
 
 -(BOOL)touchedInGoal:(CGPoint)touch color:(NSString *)color{

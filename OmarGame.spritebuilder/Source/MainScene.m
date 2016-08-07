@@ -31,7 +31,7 @@
 }
 
 -(void)setUpGameAnimate:(BOOL)animate{
-    [self.prgBarsCont resetBarsAnimate:animate];
+    [self resetBars];
     [leftSideBar resetAnimate:animate];
     [rightSideBar resetAnimate:animate];
     [multiplierCircle resetAnimate:animate];
@@ -40,7 +40,7 @@
 }
 
 -(void)startGame{
-    [self.prgBarsCont activateBarsWithDifficulty:1];
+    [self resetBars];
     playingGame = true;
 }
 
@@ -49,21 +49,25 @@
     [self setUpGameAnimate:true];
 }
 
+-(void)resetBars{
+    currentColor = [leftSideBar selectRandomColor];
+    [self.prgBarsCont activateBarsWithDifficulty:1 withColor: currentColor];
+}
+
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event{
     CGPoint touchLoc = [touch locationInNode:self];
     CGPoint barLoc = [self.prgBarsCont getBarLoc];
-    currentColor = @"yellow";
     
     if(!playingGame){
         [self setUpGameAnimate:true];
         [self startGame];
     }else if(playingGame){
+        //NSLog(@"BARLOC: X: %f Y: %f",barLoc.x, barLoc.y);
         if(CGRectContainsPoint(leftSideBar.boundingBox,barLoc) && [leftSideBar touchedInGoal:barLoc color:currentColor]){
             NSLog(@"Touched Goal");
             [self activateColors:currentColor completion:^(BOOL finished){
                 if (finished) {
-                    [self.prgBarsCont resetBarsAnimate:false];
-                    [self.prgBarsCont activateBarsWithDifficulty:1];
+                    [self resetBars];
                 }
             }];
         }else{
@@ -81,9 +85,4 @@
     [rightSideBar activateColor:color];
     completion(true);
 }
-/*
-- (void)activateColors:(NSString *)color withCompBlock:(void ^)completionBlock{
-    [leftSideBar activateColor:color];
-    [rightSideBar activateColor:color];
-}*/
 @end
