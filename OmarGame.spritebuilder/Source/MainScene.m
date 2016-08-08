@@ -1,6 +1,7 @@
 #import "MainScene.h"
 #import "SideBarGoal.h"
 #import "MultiplierCircle.h"
+#import "TopMultiplierBar.h"
 #import "ProgressBarController.h"
 #import "ProgressTapBar.h"
 
@@ -11,9 +12,10 @@
     ProgressTapBar *bottomBar;
     ProgressTapBar *topLeftBar;
     ProgressTapBar *topRightBar;
-    SideBarGoal *leftSideBar;
-    SideBarGoal *rightSideBar;
+    SideBarGoal *leftSideGoal;
+    SideBarGoal *rightSideGoal;
     MultiplierCircle *multiplierCircle;
+    TopMultiplierBar *topMultiplierBar;
     CCNodeColor *bgNodeColor;
     CCSprite *topGoalBar;
     CCSprite *topGoalBarLFill;
@@ -27,14 +29,15 @@
     self.userInteractionEnabled = true;
     NSArray *prgBars = [[NSArray alloc] initWithObjects:bottomBar,leftBar,rightBar,topLeftBar,topRightBar, nil];
     self.prgBarsCont = [[ProgressBarController alloc] initWithBars:prgBars];
+    [topMultiplierBar resetBarWithAnimation:false];
+    [multiplierCircle resetCircleWithAnimation:false];
     [self setUpGameAnimate:false];
 }
 
 -(void)setUpGameAnimate:(BOOL)animate{
-    [self resetBars];
-    [leftSideBar resetAnimate:animate];
-    [rightSideBar resetAnimate:animate];
-    [multiplierCircle resetAnimate:animate];
+    [leftSideGoal resetAnimate:animate];
+    [rightSideGoal resetAnimate:animate];
+    [multiplierCircle resetCircleWithAnimation:animate];
     scoreCounter.string = @"0";
     playingGame = false;
 }
@@ -46,12 +49,23 @@
 
 -(void)loseGame{
     NSLog(@"Lost Game");
+    [self.prgBarsCont resetBarsAnimate:false color:nil];
     [self setUpGameAnimate:true];
 }
 
 -(void)resetBars{
-    currentColor = [leftSideBar selectRandomColor];
-    [self.prgBarsCont activateBarsWithDifficulty:1 withColor: currentColor];
+    currentColor = [leftSideGoal selectRandomColor];
+    if([currentColor isEqualToString:@"allSelected"]){
+        float animationDuration = 2.0;
+        [leftSideGoal advanceGoalWithAnimationDuration:animationDuration];
+        [rightSideGoal advanceGoalWithAnimationDuration:animationDuration];
+        [self.prgBarsCont resetBarsAnimate:false color:@"yellow"];
+        [self performSelector:@selector(resetBars) withObject:nil afterDelay:animationDuration];
+    }else if([currentColor isEqualToString:@"advanceToNextLevel"]){
+        
+    }else{
+        [self.prgBarsCont activateBarsWithDifficulty:1 withColor: currentColor];
+    }
 }
 
 -(void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event{
@@ -62,8 +76,8 @@
         [self setUpGameAnimate:true];
         [self startGame];
     }else if(playingGame){
-        //NSLog(@"BARLOC: X: %f Y: %f",barLoc.x, barLoc.y);
-        if(CGRectContainsPoint(leftSideBar.boundingBox,barLoc) && [leftSideBar touchedInGoal:barLoc color:currentColor]){
+        //If the user pressed inside the goal, activate the color. ELSE: lose the game
+        if([leftSideGoal touchedInGoal:barLoc color:currentColor]){
             NSLog(@"Touched Goal");
             [self activateColors:currentColor completion:^(BOOL finished){
                 if (finished) {
@@ -81,8 +95,8 @@
     
 }
 - (void)activateColors:(NSString *)color completion:(void (^)(BOOL finished))completion{
-    [leftSideBar activateColor:color];
-    [rightSideBar activateColor:color];
+    [leftSideGoal activateColor:color];
+    [rightSideGoal activateColor:color];
     completion(true);
 }
 @end

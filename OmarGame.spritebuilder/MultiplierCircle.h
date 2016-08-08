@@ -7,12 +7,13 @@
 //
 
 #import "CCSprite.h"
+#import "TopMultiplierBar.h"
 
 @interface MultiplierCircle : CCSprite
 
 @property (strong, nonatomic) CCLabelTTF *multiLabel;
 @property (nonatomic) int multiplier;
 
--(void)resetAnimate:(BOOL)animate;
+-(void)resetCircleWithAnimation:(BOOL)animate;
 
 @end

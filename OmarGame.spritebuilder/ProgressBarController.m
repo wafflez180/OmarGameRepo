@@ -28,12 +28,15 @@
     rightBar = [prgBars objectAtIndex:2];
     topLeftBar = [prgBars objectAtIndex:3];
     topRightBar = [prgBars objectAtIndex:4];
-    [self resetBarsAnimate:false color:@"yellow"];
+    [self resetBarsAnimate:false color:nil];
     
     return self;
 }
 
 -(void)resetBarsAnimate:(BOOL)animate color:(NSString *)color{
+    if(color == nil){
+        color = @"yellow";
+    }
     for(ProgressTapBar *prgBar in prgBars){
         [prgBar reset];
         [prgBar setBarColor:color];
@@ -74,7 +77,7 @@
         return CGPointMake([UIScreen mainScreen].bounds.size.width/2-([UIScreen mainScreen].bounds.size.width/2 * bottomBar.scaleX), bottomBar.contentSize.height/2);
     }else if(animatingBarStage == 2){
         NSLog(@"X: %f \nY: %f", leftBar.contentSize.width/2, leftBar.positionInPoints.y);
-        return CGPointMake(5, leftBar.positionInPoints.y);
+        return CGPointMake(leftBar.contentSize.width/2, leftBar.positionInPoints.y * leftBar.contentSize.height);
     }else if(animatingBarStage == 3){
         return CGPointMake(topLeftBar.positionInPoints.x, topLeftBar.positionInPoints.y - (topLeftBar.contentSize.height/2));
     }

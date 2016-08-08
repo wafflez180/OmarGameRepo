@@ -94,6 +94,7 @@
 		BC5399DA1A44DCC90063F482 /* GLActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D51A44DCC90063F482 /* GLActivityKit.framework */; };
 		BC5399DB1A44DCC90063F482 /* JavaFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D61A44DCC90063F482 /* JavaFoundation.framework */; };
 		BC5399DC1A44DCC90063F482 /* JavaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5399D71A44DCC90063F482 /* JavaKit.framework */; };
+		CA1E70361D57F27A0057DD6C /* TopMultiplierBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E70351D57F27A0057DD6C /* TopMultiplierBar.m */; };
 		CA3844EE1D5661F2009557E8 /* SideBarGoal.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3844ED1D5661F2009557E8 /* SideBarGoal.m */; };
 		CA3844F11D566472009557E8 /* ProgressTapBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3844F01D566472009557E8 /* ProgressTapBar.m */; };
 		CA3844F41D56656B009557E8 /* MultiplierCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = CA3844F31D56656B009557E8 /* MultiplierCircle.m */; };
@@ -216,6 +217,8 @@
 		BC5399D51A44DCC90063F482 /* GLActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLActivityKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/GLActivityKit.framework"; sourceTree = "<group>"; };
 		BC5399D61A44DCC90063F482 /* JavaFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaFoundation.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaFoundation.framework"; sourceTree = "<group>"; };
 		BC5399D71A44DCC90063F482 /* JavaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaKit.framework; path = "../../../../Library/Application Support/Developer/Shared/Xcode/Platforms/Android.platform/Developer/SDKs/SBAndroid.sdk/System/Library/Frameworks/JavaKit.framework"; sourceTree = "<group>"; };
+		CA1E70341D57F27A0057DD6C /* TopMultiplierBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopMultiplierBar.h; sourceTree = "<group>"; };
+		CA1E70351D57F27A0057DD6C /* TopMultiplierBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopMultiplierBar.m; sourceTree = "<group>"; };
 		CA3844EC1D5661F2009557E8 /* SideBarGoal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarGoal.h; sourceTree = "<group>"; };
 		CA3844ED1D5661F2009557E8 /* SideBarGoal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarGoal.m; sourceTree = "<group>"; };
 		CA3844EF1D566472009557E8 /* ProgressTapBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressTapBar.h; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				CA3844ED1D5661F2009557E8 /* SideBarGoal.m */,
 				CA3844F21D56656B009557E8 /* MultiplierCircle.h */,
 				CA3844F31D56656B009557E8 /* MultiplierCircle.m */,
+				CA1E70341D57F27A0057DD6C /* TopMultiplierBar.h */,
+				CA1E70351D57F27A0057DD6C /* TopMultiplierBar.m */,
 				D352B48019EC608A00829775 /* MetalShaders */,
 			);
 			name = Source;
@@ -841,6 +846,7 @@
 				CA3844EE1D5661F2009557E8 /* SideBarGoal.m in Sources */,
 				7A046D8C19E8A20E004C4763 /* MainScene.m in Sources */,
 				CA3844F71D566836009557E8 /* ProgressBarController.m in Sources */,
+				CA1E70361D57F27A0057DD6C /* TopMultiplierBar.m in Sources */,
 				5B121038197487F2004C1E1D /* AppDelegate.m in Sources */,
 				CA3844F41D56656B009557E8 /* MultiplierCircle.m in Sources */,
 				CA3844F11D566472009557E8 /* ProgressTapBar.m in Sources */,

@@ -14,5 +14,6 @@
 -(BOOL)touchedInGoal:(CGPoint)touch color:(NSString *)color;
 - (void)activateColor:(NSString *)color;
 -(NSString *)selectRandomColor;
+-(void)advanceGoalWithAnimationDuration:(float)duration;
 
 @end

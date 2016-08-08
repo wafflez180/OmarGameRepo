@@ -17,21 +17,10 @@
     
 }
 
--(void)resetAnimate:(BOOL)animate{
-    if(animate){
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.2];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-    }
-    
+-(void)resetCircleWithAnimation:(BOOL)animate{
     self.multiplier = 1;
     self.multiLabel.string = @"1x";
-    
-    if(animate){
-        [UIView commitAnimations];
-    }
-    
 }
+
 
 @end

@@ -15,5 +15,5 @@
 -(CGPoint)getBarLoc;
 - (void)activateColor:(NSString *)color
         withCompBlock:(void (^)(BOOL time))completionBlock;
-
+-(void)resetBarsAnimate:(BOOL)animate color:(NSString *)color;
 @end
